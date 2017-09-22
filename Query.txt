@@ -1,0 +1,9 @@
+SELECT c.DO_ACT_FROM, c.DO_ACT_TO, a.AGNNAME, c3.NAME, id.NAME
+FROM CLNPSPFMHS c 
+	INNER JOIN CLNPSPFM c1 ON ( c.PRN = c1.RN  )  
+		INNER JOIN CLNPERSONS c2 ON ( c1.PERSRN = c2.RN  )  
+			INNER JOIN AGNLIST a ON ( c2.PERS_AGENT = a.RN  )  
+		INNER JOIN CLNPOSTS c3 ON ( c1.POSTRN = c3.RN  )  
+		INNER JOIN INS_DEPARTMENT id ON ( c1.DEPTRN = id.RN  )  
+WHERE c.DO_ACT_FROM>=to_timestamp('2017-09-04 21:00:00','yyyy-mm-dd hh24:mi:ss') AND
+	c.DO_ACT_TO<=to_timestamp('2017-09-04 21:00:00','yyyy-mm-dd hh24:mi:ss')
